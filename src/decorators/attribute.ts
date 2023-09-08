@@ -27,7 +27,7 @@ export const CreatedAt =
       target.constructor,
       key,
       SCHEMA_ATTRIBUTE_CATEGORIES.createdAt,
-      definition
+      definition ?? { type: Date }
     );
   };
 
@@ -37,7 +37,7 @@ export const UpdatedAt =
       target.constructor,
       key,
       SCHEMA_ATTRIBUTE_CATEGORIES.updatedAt,
-      definition
+      definition ?? { type: Date }
     );
   };
 
@@ -47,7 +47,7 @@ const setAttribute = (
   category: SCHEMA_ATTRIBUTE_CATEGORIES,
   definition?: AttributeDefinition
 ) => {
-  const attributes = getSchemaAttributes(target);
+  const attributes = getSchemaAttributes(target) ?? {};
   const attribute = shallowMerge(attributes[key], definition, {
     [SCHEMA_ATTRIBUTE_KEYS.category]: category,
   });
