@@ -45,7 +45,7 @@ export type ModelOption = ModelTableOptions & {
 
 export const getSchemaAttributes = (target: any) =>
   shallowClone(
-    Reflect.getMetadata(REFLECT_KEYS.schemaAttributes, target)
+    Reflect.getMetadata(REFLECT_KEYS.schemaAttributes, target) || {}
   ) as Attributes;
 
 export const setSchemaAttributes = (target: any, attributes: Attributes) => {
@@ -54,7 +54,7 @@ export const setSchemaAttributes = (target: any, attributes: Attributes) => {
 
 export const getSchemaSettings = (target: any) =>
   shallowClone(
-    Reflect.getMetadata(REFLECT_KEYS.schemaSettings, target)
+    Reflect.getMetadata(REFLECT_KEYS.schemaSettings, target) || {}
   ) as SchemaSettings;
 
 export const setSchemaSettings = (target: any, settings: SchemaSettings) => {
@@ -63,7 +63,7 @@ export const setSchemaSettings = (target: any, settings: SchemaSettings) => {
 
 export const getModelOptions = (target: any) =>
   shallowClone(
-    Reflect.getMetadata(REFLECT_KEYS.modelOptions, target)
+    Reflect.getMetadata(REFLECT_KEYS.modelOptions, target) || {}
   ) as ModelOption;
 
 export const setModelOptions = (target: any, options: ModelOption) => {

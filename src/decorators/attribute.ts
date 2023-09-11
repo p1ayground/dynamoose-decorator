@@ -14,7 +14,7 @@ import {
 export const Attribute =
   (definition?: AttributeDefinition) => (target: any, key: string) => {
     setAttribute(
-      target.constructor,
+      target,
       key,
       SCHEMA_ATTRIBUTE_CATEGORIES.attribute,
       definition
@@ -24,7 +24,7 @@ export const Attribute =
 export const CreatedAt =
   (definition?: AttributeDefinition) => (target: any, key: string) => {
     setAttribute(
-      target.constructor,
+      target,
       key,
       SCHEMA_ATTRIBUTE_CATEGORIES.createdAt,
       definition ?? { type: Date }
@@ -34,7 +34,7 @@ export const CreatedAt =
 export const UpdatedAt =
   (definition?: AttributeDefinition) => (target: any, key: string) => {
     setAttribute(
-      target.constructor,
+      target,
       key,
       SCHEMA_ATTRIBUTE_CATEGORIES.updatedAt,
       definition ?? { type: Date }
@@ -47,7 +47,7 @@ const setAttribute = (
   category: SCHEMA_ATTRIBUTE_CATEGORIES,
   definition?: AttributeDefinition
 ) => {
-  const attributes = getSchemaAttributes(target) ?? {};
+  const attributes = getSchemaAttributes(target.constructor) ?? {};
   const attribute = shallowMerge(attributes[key], definition, {
     [SCHEMA_ATTRIBUTE_KEYS.category]: category,
   });
@@ -61,7 +61,7 @@ const setAttribute = (
   }
 
   attributes[key] = attribute;
-  setSchemaAttributes(target, attributes);
+  setSchemaAttributes(target.constructor, attributes);
 };
 
 export const Storage =
@@ -88,5 +88,5 @@ export const Storage =
       };
     }
 
-    setSchemaAttributes(target, attributes);
+    setSchemaAttributes(target.constructor, attributes);
   };
