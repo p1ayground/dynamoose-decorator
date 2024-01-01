@@ -1,0 +1,39 @@
+{
+  "name": "dynamoose-decorator",
+  "version": "3.2.10",
+  "description": "generate a dynamoose schema with the decorator",
+  "main": "./dist/src/index.js",
+  "files": [
+    "dist/**/*",
+    "!**/*.tsbuildinfo",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "esbuild ./src/index.ts --external:dynamoose --bundle --minify --platform=node --outfile=./dist/src/index.js --sourcemap && tsc --emitDeclarationOnly --outDir dist",
+    "lint:ts": "tsc --noEmit",
+    "lint:prettier": "prettier . --check",
+    "prepare": "husky install"
+  },
+  "author": "jinseok0 <jinseok.d@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.19.6",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "dynamoose": "^3.2.1",
+    "esbuild": "^0.19.11",
+    "eslint": "^8.56.0",
+    "eslint-config-import-typescript": "^1.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^8.0.3",
+    "prettier": "^3.1.1",
+    "reflect-metadata": "^0.2.1",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "dynamoose": "^3.2.1"
+  }
+}

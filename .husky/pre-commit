@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+if [[ $(git rev-parse --abbrev-ref HEAD) =~ ^temp/ ]]; then
+ echo "temporary branch mode, pass husky pre-commit\n"
+ exit 0
+fi
+
+pnpm lint:ts
+pnpm lint:prettier
