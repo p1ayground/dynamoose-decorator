@@ -1,6 +1,6 @@
 {
   "name": "dynamoose-decorator",
-  "version": "1.0.1",
+  "version": "3.3.2",
   "description": "generate a dynamoose schema with the decorator",
   "main": "./dist/src/index.js",
   "files": [
@@ -21,7 +21,7 @@
     "@types/node": "^18.19.6",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
-    "dynamoose": "^4.0.0",
+    "dynamoose": "^3.3.0",
     "esbuild": "^0.19.11",
     "eslint": "^8.56.0",
     "eslint-config-import-typescript": "^1.0.0",
@@ -34,7 +34,7 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "dynamoose": "^4.0.0"
+    "dynamoose": "^3.3.0"
   },
   "repository": {
     "type": "git",
