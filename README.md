@@ -47,62 +47,63 @@ major and middle versions of this package follow dynamoose, and the minor versio
 ## Usage
 
 ```typescript
-import { randomUUID } from 'crypto'
-import { Attribute, CreatedAt, Enum, HashKey, Model, Storage, getModel, UpdatedAt } from 'dynamoose-decorator'
-import { Item } from 'dynamoose/dist/Item'
+import { Item } from 'dynamoose/dist/Item.js';
+import {
+	HashKey,
+	Attribute,
+	Required,
+	Index,
+	CreatedAt,
+	UpdatedAt,
+	Model,
+	Storage,
+  getModel,
+} from 'dynamoose-decorator';
 
-const Status = {
-  Shipped: 'Shipped',
-  Unshipped: 'Unshipped',
-  Canceled: 'Canceled',
-} as const
+@Model({ throughput: 'ON_DEMAND', waitForActive: false })
+class User extends Item {
+	@HashKey()
+	@Attribute()
+	id: string;
 
-type Status = keyof typeof Status
+	@Index({ name: 'emailIndex' })
+	@Required()
+	@Attribute()
+	email: string;
 
-@Model()
-export class OrderHistory extends Item {
-  @HashKey()
-  @Attribute()
-  id!: string
+	@Index({ name: 'nameIndex' })
+	@Required()
+	@Attribute()
+	name: string;
 
-  @Attribute()
-  price!: number
+	@Index({ name: 'companyAndScoreIndex', rangeKey: 'score' })
+	@Attribute()
+	company: string;
 
-  @Enum(Object.keys(Status))
-  @Attribute()
-  status!: Status
+	@Attribute()
+	score: number;
 
-  @Storage('iso')
-  @Attribute()
-  shipmentAt?: Date
+	@Storage('milliseconds')
+	@CreatedAt()
+	@Attribute()
+	createdAt: Date;
 
-  @Storage('milliseconds')
-  @CreatedAt()
-  createdAt!: Date
-
-  @Storage('milliseconds')
-  @UpdatedAt()
-  updatedAt!: Date
+	@Storage('milliseconds')
+	@UpdatedAt()
+	@Attribute()
+	updatedAt: Date;
 }
 
-const OrderHistoryModel = getModel(OrderHistory)
+export const UserModel = getModel(User)
 
-;(async () => {
-  // create
-  const orderHistory = await OrderHistoryModel.create({
-    id: randomUUID(),
-    price: 99.99,
-    status: Status.Unshipped,
-  })
+const user = new UserModel();
+user.id = 'bf02318d-4029-4474-a7a0-e957eb176d75';
+user.email = 'test@dynamoose.com';
+user.name = 'DYNAMOOSE';
+user.company = 'Amazon';
+user.score = 3;
 
-  // update
-  orderHistory.status = Status.Shipped
-  orderHistory.shipmentAt = new Date()
-  await orderHistory.save()
-
-  // delete
-  await orderHistory.delete()
-})()
+await user.save();
 ```
 
 ### People
