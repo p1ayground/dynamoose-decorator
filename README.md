@@ -49,49 +49,49 @@ major and middle versions of this package follow dynamoose, and the minor versio
 ```typescript
 import { Item } from 'dynamoose/dist/Item.js';
 import {
-	HashKey,
-	Attribute,
-	Required,
-	Index,
-	CreatedAt,
-	UpdatedAt,
-	Model,
-	Storage,
+  HashKey,
+  Attribute,
+  Required,
+  Index,
+  CreatedAt,
+  UpdatedAt,
+  Model,
+  Storage,
   getModel,
 } from 'dynamoose-decorator';
 
 @Model({ throughput: 'ON_DEMAND', waitForActive: false })
 class User extends Item {
-	@HashKey()
-	@Attribute()
-	id: string;
+  @HashKey()
+  @Attribute()
+  id: string;
 
-	@Index({ name: 'emailIndex' })
-	@Required()
-	@Attribute()
-	email: string;
+  @Index({ name: 'emailIndex' })
+  @Required()
+  @Attribute()
+  email: string;
 
-	@Index({ name: 'nameIndex' })
-	@Required()
-	@Attribute()
-	name: string;
+  @Index({ name: 'nameIndex' })
+  @Required()
+  @Attribute()
+  name: string;
 
-	@Index({ name: 'companyAndScoreIndex', rangeKey: 'score' })
-	@Attribute()
-	company: string;
+  @Index({ name: 'companyAndScoreIndex', rangeKey: 'score' })
+  @Attribute()
+  company: string;
 
-	@Attribute()
-	score: number;
+  @Attribute()
+  score: number;
 
-	@Storage('milliseconds')
-	@CreatedAt()
-	@Attribute()
-	createdAt: Date;
+  @Storage('milliseconds')
+  @CreatedAt()
+  @Attribute()
+  createdAt: Date;
 
-	@Storage('milliseconds')
-	@UpdatedAt()
-	@Attribute()
-	updatedAt: Date;
+  @Storage('milliseconds')
+  @UpdatedAt()
+  @Attribute()
+  updatedAt: Date;
 }
 
 export const UserModel = getModel(User)
