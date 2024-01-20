@@ -23,9 +23,26 @@ install using `pnpm`
 pnpm add dynamoose-decorator dynamoose
 ```
 
-> minor version of this library corresponds to 10 times the minor version of dynamoose.
->
-> ex) dynamoose@3.2.1 -> dynamoose-decorator@3.2.10
+and then modify the tsconfig.json
+```json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+  }
+}
+```
+
+## Version
+
+major and middle versions of this package follow dynamoose, and the minor version follows dynamoose multiplied by 10.
+
+| dyanmoose | dynamoose-decorator |
+| --- | --- |
+| 4.0.0 | 4.0.0 |
+| 3.3.0 | 3.3.0 |
+| 3.2.1 | 3.2.10 |
+| 3.2.0 | 3.2.0 |
 
 ## Usage
 
@@ -90,7 +107,7 @@ const OrderHistoryModel = getModel(OrderHistory)
 
 ### People
 
-author and maintainer is [jinseok0](https://github.com/jinseok0)
+author and maintainer is [jinseok0](https://github.com/jinseok0) and [changmyeong](https://github.com/changmyeong)
 
 ### License
 
