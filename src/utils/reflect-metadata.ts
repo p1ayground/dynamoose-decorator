@@ -30,10 +30,10 @@ export function setModelTableOptions(target: any, options: ModelTableOptions) {
   Reflect.defineMetadata(REFLECT_KEYS.modelTableOptions, options, target)
 }
 
-export function getSchmeaSettings(target: any): SchemaSettings {
+export function getSchemaSettings(target: any): SchemaSettings {
   return { ...(Reflect.getMetadata(REFLECT_KEYS.schemaSettings, target) || {}) }
 }
 
-export function setSchmeaSettings(target: any, settings: SchemaSettings) {
+export function setSchemaSettings(target: any, settings: SchemaSettings) {
   Reflect.defineMetadata(REFLECT_KEYS.schemaSettings, settings, target)
 }
