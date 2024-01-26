@@ -94,17 +94,6 @@ and then modify the tsconfig.json
 }
 ```
 
-## Version
-
-major and middle versions of this package follow dynamoose, and the minor version follows dynamoose multiplied by 10.
-
-| dyanmoose | dynamoose-decorator (latest) |
-| --- | --- |
-| 4.0.0 | 4.0.2 |
-| 3.3.0 | 3.3.2 |
-| 3.2.1 | 3.2.12 |
-| 3.2.0 | 3.2.2 |
-
 ## Attribute
 ### `@Attribute`
 Define attribute for a Dynamoose model.  
