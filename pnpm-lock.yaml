@@ -18,8 +18,8 @@ devDependencies:
     specifier: ^6.16.0
     version: 6.16.0(eslint@8.56.0)(typescript@5.3.3)
   dynamoose:
-    specifier: ^4.0.0
-    version: 4.0.0
+    specifier: ^3.2.1
+    version: 3.3.0
   esbuild:
     specifier: ^0.19.11
     version: 0.19.11
@@ -2532,18 +2532,18 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /dynamoose-utils@4.0.0:
-    resolution: {integrity: sha512-jyuV7xsk8Xj/FcIBB8+pRwjroORhM9HKBbytzrwO6qYK9SurzXdNyzxkSPS4r5XB5rULGe+c9cPJuVZ00GgtBg==}
+  /dynamoose-utils@3.3.0:
+    resolution: {integrity: sha512-j+1KvqXAWcz0P7BwEehOR+o2chQNFVdrTQlftf+3uL4xeW6C9I/lYLdEFVaa6Mu9bVTj05pLoKyXlM8QcDFqXw==}
     dependencies:
       js-object-utilities: 2.2.0
     dev: true
 
-  /dynamoose@4.0.0:
-    resolution: {integrity: sha512-o7t+ny/vpLjRBehyyu6oD9RJfnInwuTMCBlBtIIgYE2NfawsDLIhZZXl1qRXmTa+qsfiJD2agCRo/U1Vfng7gQ==}
+  /dynamoose@3.3.0:
+    resolution: {integrity: sha512-jWSp7ubT/tGqS61Fo5wqJFaxAcnn3WDa2qV2dtPXHlw2PDW2pjJ1n7fwJGBts/FyhlsKz95hS6dTk69b7w4k1A==}
     dependencies:
       '@aws-sdk/client-dynamodb': 3.484.0
       '@aws-sdk/util-dynamodb': 3.484.0(@aws-sdk/client-dynamodb@3.484.0)
-      dynamoose-utils: 4.0.0
+      dynamoose-utils: 3.3.0
       js-object-utilities: 2.2.0
     transitivePeerDependencies:
       - aws-crt
