@@ -15,9 +15,17 @@ import {
 } from '../attribute'
 
 describe('attribute', () => {
+  interface ObjectInterface {
+    testA: string
+    testB: number
+  }
+
   class TestSchema {
     @Attribute()
     normalAttribute!: string
+
+    @Attribute()
+    objectAttribute!: ObjectInterface
 
     @Default('default-value')
     @Attribute()
@@ -75,6 +83,7 @@ describe('attribute', () => {
     const definitions = getAttributeDefinitions(targetInstance.constructor)
 
     expect(definitions['normalAttribute']).toBeDefined()
+    expect(definitions['objectAttribute']).toBeDefined()
     expect(definitions['attributeWithDefault'].default).toEqual('default-value')
     expect(definitions['attributeWithForceDefault'].forceDefault).toEqual(true)
     expect(definitions['requiredAttribute'].required).toEqual(true)
