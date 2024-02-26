@@ -18,7 +18,7 @@ import {
 } from 'dynamoose-decorator';
 
 @Model({ throughput: 'ON_DEMAND', waitForActive: false })
-@Schema()
+@Schema({ saveUnknown: true })
 class UserSchema extends Item {
   @HashKey()
   @Attribute()
@@ -104,6 +104,20 @@ import { Attribute } from 'dynamoose-decorator';
 
 @Attribute()
 name: string;
+```
+
+⚠️ **Note:** You have to set true `saveUnknown` in `@Schema` when use object field.
+```
+interface RoleInterface {
+  name: string;
+  grade: string;
+}
+
+@Schema({ saveUnknown: true })
+class UserModel {
+  @Attribute()
+  role: RoleInterface;
+}
 ```
 
 ### `@HashKey`
