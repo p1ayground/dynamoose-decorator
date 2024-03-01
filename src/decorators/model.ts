@@ -16,7 +16,16 @@ export const Model =
 export function getModel<T extends Item>(model: { new (...args: any): T }) {
   const options = getModelTableOptions(model)
 
-  return dynamoose.model<T>(options.tableName ?? model.name, getSchema(model), options)
+  const dynamooseModel = dynamoose.model<T>(options.tableName ?? model.name, getSchema(model), options)
+
+  Object.getOwnPropertyNames(model.prototype).forEach((key) => {
+    if (typeof model.prototype[key] === 'function' && key !== 'constructor') {
+      // @ts-ignore
+      dynamooseModel[key] = model.prototype[key]
+    }
+  })
+
+  return dynamooseModel
 }
 
 // Special
