@@ -41,7 +41,7 @@ describe('model', () => {
     @Model()
     class TestModel extends Item {
       @Attribute() id!: string
-      async testmethod() { }
+      async testmethod() {}
     }
 
     const result = getModel(TestModel)
