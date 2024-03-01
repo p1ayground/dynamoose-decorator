@@ -37,6 +37,17 @@ describe('model', () => {
     expect(result.Model.name).toEqual('ChangedModel')
   })
 
+  it('should get dynamoose model have custom method', () => {
+    @Model()
+    class TestModel extends Item {
+      @Attribute() id!: string
+      async testmethod() { }
+    }
+
+    const result = getModel(TestModel)
+    expect(result).toHaveProperty('testmethod')
+  })
+
   it('should apply KebabCase decorator to set kebab-case table name', () => {
     @KebabCase()
     class DecoratedModel {}
