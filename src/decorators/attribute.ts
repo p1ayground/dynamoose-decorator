@@ -19,6 +19,12 @@ export const Attribute =
 export const Type = (option: AttributeDefinition['type']) => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
 
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
+
   definitions[key].type = option
 
   setAttributeDefinitions(target.constructor, definitions)
@@ -26,6 +32,12 @@ export const Type = (option: AttributeDefinition['type']) => (target: any, key: 
 
 export const Default = (option: AttributeDefinition['default']) => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
+
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
 
   definitions[key].default = option
 
@@ -37,6 +49,12 @@ export const ForceDefault =
   (target: any, key: string) => {
     const definitions = getAttributeDefinitions(target.constructor)
 
+    if (!definitions[key]) {
+      definitions[key] = {
+        type: Reflect.getMetadata('design:type', target, key),
+      }
+    }
+
     definitions[key].forceDefault = option
 
     setAttributeDefinitions(target.constructor, definitions)
@@ -47,6 +65,12 @@ export const Required =
   (target: any, key: string) => {
     const definitions = getAttributeDefinitions(target.constructor)
 
+    if (!definitions[key]) {
+      definitions[key] = {
+        type: Reflect.getMetadata('design:type', target, key),
+      }
+    }
+
     definitions[key].required = option
 
     setAttributeDefinitions(target.constructor, definitions)
@@ -55,6 +79,12 @@ export const Required =
 export const Enum = (option: AttributeDefinition['enum']) => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
 
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
+
   definitions[key].enum = option
 
   setAttributeDefinitions(target.constructor, definitions)
@@ -62,6 +92,12 @@ export const Enum = (option: AttributeDefinition['enum']) => (target: any, key: 
 
 export const Index = (option: AttributeDefinition['index']) => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
+
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
 
   definitions[key].index = option
 
@@ -73,6 +109,12 @@ export const HashKey =
   (target: any, key: string) => {
     const definitions = getAttributeDefinitions(target.constructor)
 
+    if (!definitions[key]) {
+      definitions[key] = {
+        type: Reflect.getMetadata('design:type', target, key),
+      }
+    }
+
     definitions[key].hashKey = option
 
     setAttributeDefinitions(target.constructor, definitions)
@@ -83,6 +125,12 @@ export const RangeKey =
   (target: any, key: string) => {
     const definitions = getAttributeDefinitions(target.constructor)
 
+    if (!definitions[key]) {
+      definitions[key] = {
+        type: Reflect.getMetadata('design:type', target, key),
+      }
+    }
+
     definitions[key].rangeKey = option
 
     setAttributeDefinitions(target.constructor, definitions)
@@ -90,6 +138,12 @@ export const RangeKey =
 
 export const Map = (option: AttributeDefinition['map']) => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
+
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
 
   definitions[key].map = option
 
@@ -103,6 +157,12 @@ export const Aliases = (option: AttributeDefinition['map']) => Map(option)
 export const DefaultMap = (option: AttributeDefinition['defaultMap']) => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
 
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
+
   definitions[key].defaultMap = option
 
   setAttributeDefinitions(target.constructor, definitions)
@@ -115,6 +175,12 @@ export const DefaultAlias = (option: AttributeDefinition['defaultMap']) => Map(o
 export const CreatedAt = () => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
 
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
+
   definitions[key]._specialType = 'createdAt'
 
   setAttributeDefinitions(target.constructor, definitions)
@@ -123,6 +189,12 @@ export const CreatedAt = () => (target: any, key: string) => {
 export const UpdatedAt = () => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
 
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
+
   definitions[key]._specialType = 'updatedAt'
 
   setAttributeDefinitions(target.constructor, definitions)
@@ -130,6 +202,13 @@ export const UpdatedAt = () => (target: any, key: string) => {
 
 export const Storage = (storage: AttributeDateSettings['storage']) => (target: any, key: string) => {
   const definitions = getAttributeDefinitions(target.constructor)
+  
+  if (!definitions[key]) {
+    definitions[key] = {
+      type: Reflect.getMetadata('design:type', target, key),
+    }
+  }
+  
   const definition = definitions[key]
 
   if (definition.type === Date) {

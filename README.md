@@ -21,34 +21,27 @@ import {
 @Schema({ saveUnknown: true })
 class UserSchema extends Item {
   @HashKey()
-  @Attribute()
   id: string;
 
   @Index({ name: 'emailIndex' })
   @Required()
-  @Attribute()
   email: string;
 
   @Index({ name: 'nameIndex' })
   @Required()
-  @Attribute()
   name: string;
 
   @Index({ name: 'companyAndScoreIndex', rangeKey: 'score' })
-  @Attribute()
   company: string;
 
-  @Attribute()
   score: number;
 
   @Storage('milliseconds')
   @CreatedAt()
-  @Attribute()
   createdAt: Date;
 
   @Storage('milliseconds')
   @UpdatedAt()
-  @Attribute()
   updatedAt: Date;
 }
 
@@ -96,9 +89,7 @@ and then modify the tsconfig.json
 
 ## Attribute
 ### `@Attribute`
-Define attribute for a Dynamoose model.  
-
-⚠️ **Note:** Ensure that all attributes in your Dynamoose model are decorated with `@Attribute` for the settings to take effect.
+Define attribute for a Dynamoose model. This decorator is optional when using other decorators like `@HashKey`, `@Required`, `@Index`, etc.
 ```typescript
 import { Attribute } from 'dynamoose-decorator';
 
@@ -126,10 +117,9 @@ Hash Key is commonly called a Partition Key in the AWS Documentation.
 
 ⚠️ **Note:** Hash keys can only be specified for attributes of types Number, String, and Binary.
 ```typescript
-import { HashKey, Attribute } from 'dynamoose-decorator';
+import { HashKey } from 'dynamoose-decorator';
 
 @HashKey()
-@Attribute()
 id: string;
 ```
 
@@ -138,10 +128,9 @@ You can set this decorator to overwrite what the Range Key for the Model will be
 Range Key is commonly called a Sort Key in the AWS Documentation.
 
 ```typescript
-import { RangeKey, Attribute } from 'dynamoose-decorator';
+import { RangeKey } from 'dynamoose-decorator';
 
 @RangeKey()
-@Attribute()
 score: number;
 ```
 
@@ -149,10 +138,9 @@ score: number;
 You can set this decorator to be required when saving items to DynamoDB. By default this setting is `false`.
 
 ```typescript
-import { Required, Attribute } from 'dynamoose-decorator';
+import { Required } from 'dynamoose-decorator';
 
 @Required()
-@Attribute()
 email: string;
 ```
 
@@ -162,28 +150,25 @@ It is decorate [Dynamoose default](https://dynamoosejs.com/guide/Schema#default-
 
 Default values will only be applied if the parent object exists. This means for values where you apply a default value to a nested attribute, it will only be applied if the parent object exists. If you do not want this behavior, consider setting a default value for the parent object to an empty object ({}) or an empty array ([]).
 ```typescript
-import { Default, Attribute } from 'dynamoose-decorator';
+import { Default } from 'dynamoose-decorator';
 
 @Default(5)
-@Attribute()
 age: number;
 
 @Default(async () => {
   const response = await axios("https://myurl.com/config.json").data;
   return response.defaults.age;
 })
-@Attribute()
 state: string;
 ```
 
 ### `@ForceDefault`
 You can set this property to always use the default value, even if a value is already set. This can be used for data that will be used as sort or secondary indexes. The default for this property is false.
 ```typescript
-import { ForceDefault, Default, Attribute } from 'dynamoose-decorator';
+import { ForceDefault, Default } from 'dynamoose-decorator';
 
 @ForceDefault()
 @Default(5)
-@Attribute()
 age: number;
 ```
 
@@ -193,7 +178,7 @@ You can set an attribute to have an enum array, which means it must match one of
 
 This property is not a replacement for required. If the value is undefined or null, the enum will not be checked. If you want to require the property and also have an enum you must use both enum & required.
 ```typescript
-import { Enum, Attribute } from 'dynamoose-decorator';
+import { Enum } from 'dynamoose-decorator';
 
 @Enum(['amazon', 'apple'])
 company: string;
@@ -204,18 +189,16 @@ company: string;
 Set storage settings for an attribute of type Date.  
 By default this setting is `milliseconds`.
 ```typescript
-import { Storage, Attribute } from 'dynamoose-decorator';
+import { Storage } from 'dynamoose-decorator';
 
 // Stored as a timestamp in DynamoDB.
 // It is saved as number type.
 @Storage('milliseconds')
-@Attribute()
 timestamp: Date;
 
 // Stored as a iso date in DynamoDB.
 // It is saved as string type.
 @Storage('iso')
-@Attribute()
 isodate: Date;
 ```
 
@@ -225,24 +208,20 @@ Special column that is automatically set to the entity's insertion or update tim
 ⚠️ **Note:** These features are not features of DynamoDB. it will set by the Dynamoose.
 
 ```typescript
-import { CreatedAt, UpdatedAt, Storage, Attribute } from 'dynamoose-decorator';
+import { CreatedAt, UpdatedAt, Storage } from 'dynamoose-decorator';
 
 @CreatedAt()
-@Attribute()
 createdAt: Date;
 
 @UpdatedAt()
-@Attribute()
 updatedAt: Date;
 
 @Storage('iso')
 @CreatedAt()
-@Attribute()
 createdIsoDate: Date;
 
 @Storage('iso')
 @UpdatedAt()
-@Attribute()
 updatedIsoDate: Date;
 ```
 
@@ -275,11 +254,9 @@ import { Item } from 'dynamoose/dist/Item';
 @Schema()
 class UserSchema {
   @HashKey()
-  @Attribute()
   id: string;
 
   @RangeKey()
-  @Attribute()
   score: number;
 }
 
