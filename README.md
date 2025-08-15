@@ -34,6 +34,7 @@ class UserSchema extends Item {
   @Index({ name: 'companyAndScoreIndex', rangeKey: 'score' })
   company: string;
 
+  @Attribute()
   score: number;
 
   @Storage('milliseconds')
