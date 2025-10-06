@@ -10,7 +10,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "esbuild ./src/index.ts --external:dynamoose --bundle --minify --platform=node --outfile=./dist/src/index.js --sourcemap && tsc --emitDeclarationOnly --outDir dist",
+    "build": "esbuild ./src/index.ts --external:dynamoose --external:reflect-metadata --bundle --minify --platform=node --outfile=./dist/src/index.js --sourcemap && tsc --emitDeclarationOnly --outDir dist",
     "test": "jest",
     "lint:ts": "tsc --noEmit",
     "lint:prettier": "prettier . --check",
@@ -38,7 +38,8 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "dynamoose": "^3.2.1"
+    "dynamoose": "^3.2.1",
+    "reflect-metadata": "^0.2.1"
   },
   "repository": {
     "type": "git",
