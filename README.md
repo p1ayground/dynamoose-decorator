@@ -63,22 +63,25 @@ await user.save();
 install using `npm`
 
 ```bash
-npm install dynamoose-decorator dynamoose
+npm install dynamoose-decorator dynamoose reflect-metadata
 ```
 
 install using `yarn`
 
 ```bash
-yarn add dynamoose-decorator dynamoose
+yarn add dynamoose-decorator dynamoose reflect-metadata
 ```
 
 install using `pnpm`
 
 ```bash
-pnpm add dynamoose-decorator dynamoose
+pnpm add dynamoose-decorator dynamoose reflect-metadata
 ```
 
-and then modify the tsconfig.json
+⚠️ **Note:** `reflect-metadata` is required as a peer dependency. Make sure it's installed in your project.
+
+Modify your `tsconfig.json` to enable decorator support:
+
 ```json
 {
   "compilerOptions": {
